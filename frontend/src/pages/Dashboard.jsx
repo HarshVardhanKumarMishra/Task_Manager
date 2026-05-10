@@ -18,7 +18,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const res = await fetch('http://localhost:5001/api/projects', {
+                const res = await fetch('taskmanager-production-47bc.up.railway.app/api/projects', {
                     headers: { 'Authorization': `Bearer ${user.token}` }
                 });
                 const data = await res.json();
@@ -38,7 +38,7 @@ const Dashboard = () => {
         if (!selectedProject) return;
         const fetchTasks = async () => {
             try {
-                const res = await fetch(`http://localhost:5001/api/tasks/project/${selectedProject._id}`, {
+                const res = await fetch(`taskmanager-production-47bc.up.railway.app/api/tasks/project/${selectedProject._id}`, {
                     headers: { 'Authorization': `Bearer ${user.token}` }
                 });
                 const data = await res.json();
@@ -50,10 +50,9 @@ const Dashboard = () => {
         fetchTasks();
     }, [selectedProject, user.token]);
 
-    // --- NEW: Update Task Status ---
     const handleStatusChange = async (taskId, newStatus) => {
         try {
-            const res = await fetch(`http://localhost:5001/api/tasks/${taskId}/status`, {
+            const res = await fetch(`taskmanager-production-47bc.up.railway.app/api/tasks/${taskId}/status`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -63,7 +62,6 @@ const Dashboard = () => {
             });
 
             if (res.ok) {
-                // Instantly update the UI without reloading the page
                 setTasks(tasks.map(t => t._id === taskId ? { ...t, status: newStatus } : t));
             }
         } catch (error) {

@@ -12,7 +12,7 @@ const CreateProjectModal = ({ isOpen, onClose, token, onProjectCreated }) => {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await fetch('http://localhost:5001/api/projects', {
+            const res = await fetch('taskmanager-production-47bc.up.railway.app/api/projects', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ const CreateProjectModal = ({ isOpen, onClose, token, onProjectCreated }) => {
             
             if (res.ok) {
                 const newProject = await res.json();
-                onProjectCreated(newProject); // Send new project back to Dashboard
+                onProjectCreated(newProject); 
                 setTitle('');
                 setDescription('');
                 onClose();

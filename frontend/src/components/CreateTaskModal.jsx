@@ -9,19 +9,13 @@ const CreateTaskModal = ({ isOpen, onClose, token, projectId, onTaskCreated }) =
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    // Fetch users so the Admin can assign the task
     useEffect(() => {
         if (isOpen) {
-            fetch('http://localhost:5001/api/auth/users', { // Wait, we need a users route!
-                // Actually, for simplicity, we can just assign the task to the current Admin for now,
-                // or I can give you a quick route update if you want full assignment capabilities.
+            fetch('taskmanager-production-47bc.up.railway.app/api/auth/users', { 
             })
         }
     }, [isOpen]);
 
-    // Note: Since we didn't explicitly build a "Get All Users" API route in Phase 1, 
-    // we will make the AssignedTo field an optional manual ID entry for now to save time, 
-    // or leave it blank (Unassigned). 
     
     if (!isOpen) return null;
 
@@ -29,7 +23,7 @@ const CreateTaskModal = ({ isOpen, onClose, token, projectId, onTaskCreated }) =
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await fetch('http://localhost:5001/api/tasks', {
+            const res = await fetch('taskmanager-production-47bc.up.railway.app/api/tasks', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

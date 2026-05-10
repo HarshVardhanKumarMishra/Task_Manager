@@ -18,7 +18,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const res = await fetch('taskmanager-production-47bc.up.railway.app/api/projects', {
+                const res = await fetch('https://taskmanager-production-47bc.up.railway.app/api/projects', {
                     headers: { 'Authorization': `Bearer ${user.token}` }
                 });
                 const data = await res.json();

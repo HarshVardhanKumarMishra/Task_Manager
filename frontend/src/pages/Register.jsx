@@ -14,7 +14,7 @@ const Register = () => {
         setError('');
         
         try {
-            const res = await fetch('taskmanager-production-47bc.up.railway.app/api/auth/register', {
+            const res = await fetch('https://taskmanager-production-47bc.up.railway.app/api/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
